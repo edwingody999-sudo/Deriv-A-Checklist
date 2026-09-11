@@ -2,274 +2,180 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b0e11">
-<meta name="description" content="Deriv A+ trading checklist for disciplined Rise/Fall decisions">
-
 <link rel="manifest" href="./manifest.json">
-
-<title>Deriv A+ Checklist</title>
+<title>Deriv A+ Decision Engine</title>
 
 <style>
 *{box-sizing:border-box}
-
 body{
-  margin:0;
-  background:#0b0e11;
-  color:#f5f7fa;
-  font-family:Arial,sans-serif;
+ margin:0;background:#0b0e11;color:#f2f4f7;
+ font-family:Arial,sans-serif
 }
-
-.app{
-  max-width:620px;
-  margin:auto;
-  padding:14px;
-}
-
-.header{
-  text-align:center;
-  padding:12px 0 16px;
-}
-
-.header h1{
-  margin:0;
-  font-size:25px;
-}
-
-.header p{
-  margin:6px 0 0;
-  color:#8b949e;
-  font-size:13px;
-}
-
+.container{max-width:720px;margin:auto;padding:15px}
 .card{
-  background:#151a21;
-  border:1px solid #252d36;
-  border-radius:15px;
-  padding:16px;
-  margin-bottom:13px;
+ background:#151a20;border:1px solid #29313a;
+ border-radius:16px;padding:16px;margin-bottom:12px
+}
+h1{font-size:24px;margin:0 0 5px}
+.sub{color:#98a3ae;font-size:13px;line-height:1.5}
+
+select,button{
+ background:#202731;color:#fff;
+ border:1px solid #3a4652;
+ border-radius:10px;padding:11px;
+ font-size:14px
+}
+select{width:100%}
+button{cursor:pointer}
+
+.row{display:flex;gap:8px}
+.row>*{flex:1}
+
+.tabs{display:flex;gap:8px}
+.tabs button{flex:1;font-size:17px;font-weight:bold}
+
+.active{
+ background:#303b47;
+ border:2px solid #fff
 }
 
-h2{
-  font-size:17px;
-  margin:0 0 12px;
+.section-title{
+ font-size:17px;font-weight:bold;margin-bottom:5px
 }
 
-.row{
-  display:flex;
-  gap:10px;
+.condition{
+ border:1px solid #303943;
+ border-radius:12px;
+ padding:13px;
+ margin:9px 0
 }
 
-.field{
-  flex:1;
+.condition-title{
+ font-weight:bold;font-size:14px
 }
 
-label.title{
-  display:block;
-  color:#9da6b0;
-  font-size:12px;
-  margin-bottom:6px;
+.weight{
+ color:#8995a1;font-size:12px
 }
 
-select{
-  width:100%;
-  padding:12px;
-  border-radius:9px;
-  border:1px solid #303944;
-  background:#0e1217;
-  color:#fff;
+.desc{
+ color:#8995a1;font-size:12px;
+ margin-top:4px;margin-bottom:9px
 }
 
-.tabs{
-  display:flex;
-  gap:9px;
-  margin-bottom:14px;
+.options{
+ display:flex;gap:6px;flex-wrap:wrap
 }
 
-.tab{
-  flex:1;
-  padding:13px;
-  border-radius:10px;
-  border:1px solid #303944;
-  background:#0e1217;
-  color:#9da6b0;
-  font-weight:700;
+.options button{
+ font-size:12px;
+ padding:8px 10px
 }
 
-.tab.active.rise{
-  background:#063d22;
-  color:#00e676;
-  border-color:#00a85a;
-}
-
-.tab.active.fall{
-  background:#421414;
-  color:#ff5c5c;
-  border-color:#c83b3b;
-}
-
-.check{
-  display:flex;
-  gap:10px;
-  align-items:flex-start;
-  padding:11px 0;
-  border-bottom:1px solid #242b34;
-  cursor:pointer;
-}
-
-.check:last-child{
-  border-bottom:0;
-}
-
-.check input{
-  width:19px;
-  height:19px;
-  margin-top:1px;
-  accent-color:#00d26a;
-}
-
-.check span{
-  font-size:14px;
-  line-height:1.35;
+.options button.selected{
+ outline:2px solid white;
+ background:#35414d
 }
 
 .score{
-  text-align:center;
-  font-size:44px;
-  font-weight:800;
+ font-size:38px;
+ font-weight:bold;
+ margin:5px 0
 }
 
-.sub{
-  text-align:center;
-  color:#8b949e;
-  font-size:12px;
+.progress{
+ height:12px;
+ background:#252c34;
+ border-radius:20px;
+ overflow:hidden
+}
+
+.progress-bar{
+ height:100%;
+ width:0%;
+ background:#e5e9ed;
+ transition:.3s
 }
 
 .verdict{
-  margin-top:13px;
-  text-align:center;
-  padding:14px;
-  border-radius:11px;
-  font-weight:800;
-  font-size:17px;
+ font-size:21px;
+ font-weight:bold;
+ margin-top:14px
 }
 
-.no{
-  background:#3b1010;
-  color:#ff5c5c;
+.explain{
+ color:#b6c0ca;
+ font-size:13px;
+ line-height:1.6;
+ margin-top:7px
 }
 
-.wait{
-  background:#3b3005;
-  color:#ffd740;
+.warning{
+ margin-top:10px;
+ padding:10px;
+ border-radius:10px;
+ background:#20262d;
+ color:#c4ccd4;
+ font-size:12px;
+ line-height:1.5
 }
 
-.yes{
-  background:#063d22;
-  color:#00e676;
-}
-
-button.reset{
-  width:100%;
-  padding:13px;
-  border:0;
-  border-radius:10px;
-  background:#252d36;
-  color:#fff;
-  font-weight:700;
+.reset{
+ width:100%;
+ margin-top:12px
 }
 
 .note{
-  font-size:11px;
-  color:#737d87;
-  text-align:center;
-  line-height:1.4;
-  margin:12px 5px;
-}
-
-.install{
-  display:none;
-  width:100%;
-  padding:12px;
-  margin-bottom:13px;
-  border:1px solid #303944;
-  border-radius:10px;
-  background:#111820;
-  color:#fff;
-  font-weight:700;
+ color:#78838e;
+ font-size:11px;
+ line-height:1.6
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
-
-<header class="header">
-<h1>Deriv A+ Checklist</h1>
-<p>Confirm the setup. Protect the account.</p>
-</header>
-
-<button id="installBtn" class="install">
-INSTALL APP
-</button>
+<div class="container">
 
 <div class="card">
 
-<div class="tabs">
+<h1>Deriv A+ Decision Engine</h1>
 
-<button class="tab active rise" data-direction="RISE">
-RISE
-</button>
-
-<button class="tab fall" data-direction="FALL">
-FALL
-</button>
-
+<div class="sub">
+Rules-based Rise/Fall decision assistant.
+It does not guarantee winning trades.
 </div>
+
+<br>
 
 <div class="row">
 
-<div class="field">
-
-<label class="title">
-ASSET
-</label>
-
+<div>
+<label class="sub">Asset</label>
 <select id="asset">
-
 <option>Volatility 10 Index</option>
 <option>Volatility 25 Index</option>
 <option>Volatility 50 Index</option>
 <option>Volatility 75 Index</option>
 <option>Volatility 100 Index</option>
-
 <option>Volatility 10 (1s) Index</option>
 <option>Volatility 25 (1s) Index</option>
 <option>Volatility 50 (1s) Index</option>
 <option>Volatility 75 (1s) Index</option>
 <option>Volatility 100 (1s) Index</option>
-
 </select>
-
 </div>
 
-<div class="field">
-
-<label class="title">
-TIMEFRAME
-</label>
-
-<select id="timeframe">
-
+<div>
+<label class="sub">Analysis TF</label>
+<select id="tf">
 <option>1 Minute</option>
 <option selected>5 Minutes</option>
 <option>15 Minutes</option>
 <option>1 Hour</option>
-
 </select>
-
 </div>
 
 </div>
@@ -279,114 +185,607 @@ TIMEFRAME
 
 <div class="card">
 
-<h2>
-1. Market Structure
-</h2>
+<div class="tabs">
 
-<label class="check">
-<input type="checkbox" class="condition">
-<span>Higher-timeframe direction is clear</span>
-</label>
+<button id="riseBtn" class="active">
+RISE
+</button>
 
-<label class="check">
-<input type="checkbox" class="condition">
-<span>Current structure supports RISE/FALL direction</span>
-</label>
+<button id="fallBtn">
+FALL
+</button>
 
-<label class="check">
-<input type="checkbox" class="condition">
-<span>Recent BOS or CHOCH confirms the direction</span>
-</label>
+</div>
+
+<p class="sub" id="directionText">
+Current direction: RISE
+</p>
 
 </div>
 
 
 <div class="card">
 
-<h2>
-2. Liquidity
-</h2>
+<div class="section-title">
+1. MARKET STRUCTURE
+</div>
 
-<label class="check">
-<input type="checkbox" class="condition">
-<span>Important liquidity level is identified</span>
-</label>
-
-<label class="check">
-<input type="checkbox" class="condition">
-<span>Liquidity sweep/rejection has occurred</span>
-</label>
-
-<label class="check">
-<input type="checkbox" class="condition">
-<span>No obvious trap or conflicting liquidity signal</span>
-</label>
+<div id="structure"></div>
 
 </div>
 
 
 <div class="card">
 
-<h2>
-3. Entry Confirmation
-</h2>
+<div class="section-title">
+2. LIQUIDITY
+</div>
 
-<label class="check">
-<input type="checkbox" class="condition">
-<span>Valid support/resistance or reaction zone</span>
-</label>
-
-<label class="check">
-<input type="checkbox" class="condition">
-<span>Clear confirmation/rejection candle</span>
-</label>
-
-<label class="check">
-<input type="checkbox" class="condition">
-<span>Momentum agrees with the selected direction</span>
-</label>
-
-<label class="check">
-<input type="checkbox" class="condition">
-<span>No major conflicting signal</span>
-</label>
+<div id="liquidity"></div>
 
 </div>
 
 
 <div class="card">
 
-<div id="score" class="score">
-0%
+<div class="section-title">
+3. ENTRY CONFIRMATION
+</div>
+
+<div id="entry"></div>
+
+</div>
+
+
+<div class="card">
+
+<div class="section-title">
+DECISION ENGINE
 </div>
 
 <div class="sub">
-SETUP CONFIRMATION
+Weighted alignment score
 </div>
 
-<div id="verdict" class="verdict no">
+<div class="score" id="score">
+0%
+</div>
+
+<div class="progress">
+<div class="progress-bar" id="bar"></div>
+</div>
+
+<div class="verdict" id="verdict">
 NO TRADE
 </div>
 
+<div class="explain" id="explain">
+Waiting for analysis...
+</div>
+
+<div class="warning" id="warning">
+Critical confirmations must agree before an A+ setup can appear.
+</div>
+
+<button class="reset" id="reset">
+RESET ANALYSIS
+</button>
+
 </div>
 
 
-<button id="reset" class="reset">
-RESET CHECKLIST
-</button>
+<div class="card note">
 
-<p class="note">
-A+ means the checklist conditions are satisfied; it does not guarantee a winning trade. Use disciplined stake/risk management.
-</p>
+<b>How this works:</b><br><br>
+
+You analyse the Deriv chart manually and select what you actually see.
+The engine then checks directional alignment.
+
+It does NOT automatically see the chart or receive live Deriv data.
+
+A high score alone cannot override a missing critical confirmation.
+
+</div>
 
 </div>
 
 
 <script>
 
-const checks=[
-  ...document.querySelectorAll('.condition')
+const data = {
+
+structure: [
+
+{
+ id:"htf",
+ title:"Higher-Timeframe Structure",
+ desc:"What is the dominant market structure?",
+ weight:15,
+ options:["Bullish","Bearish","Neutral"]
+},
+
+{
+ id:"bias",
+ title:"Daily / Session Bias",
+ desc:"What is the broader directional bias?",
+ weight:10,
+ options:["Bullish","Bearish","Neutral"]
+},
+
+{
+ id:"bos",
+ title:"BOS / CHOCH",
+ desc:"What did the most recent valid structural break confirm?",
+ weight:15,
+ options:["Bullish","Bearish","None"]
+}
+
+],
+
+liquidity:[
+
+{
+ id:"pool",
+ title:"Liquidity Pool",
+ desc:"Which liquidity is relevant to the current setup?",
+ weight:10,
+ options:["Sell-Side","Buy-Side","Unclear"]
+},
+
+{
+ id:"sweep",
+ title:"Liquidity Sweep",
+ desc:"Was liquidity swept and rejected/reclaimed?",
+ weight:15,
+ options:["Bullish Sweep","Bearish Sweep","No Sweep"]
+},
+
+{
+ id:"levels",
+ title:"Key Liquidity Levels",
+ desc:"Have PDH/PDL, PWH/PWL or equal highs/lows been considered?",
+ weight:5,
+ options:["Confirmed","Partially Confirmed","Not Identified"]
+}
+
+],
+
+entry:[
+
+{
+ id:"zone",
+ title:"FVG / Order Block / Reaction Zone",
+ desc:"Is there a valid reaction area?",
+ weight:10,
+ options:["Bullish","Bearish","None"]
+},
+
+{
+ id:"pd",
+ title:"Premium / Discount",
+ desc:"Where is price located inside the dealing range?",
+ weight:5,
+ options:["Discount","Premium","Mid / Unclear"]
+},
+
+{
+ id:"candle",
+ title:"Candle Confirmation",
+ desc:"Is there a clear rejection / engulfing / continuation candle?",
+ weight:5,
+ options:["Bullish","Bearish","Weak"]
+},
+
+{
+ id:"momentum",
+ title:"Momentum",
+ desc:"Does short-term momentum support the selected direction?",
+ weight:5,
+ options:["Bullish","Bearish","Weak"]
+},
+
+{
+ id:"conflict",
+ title:"Conflicting Signal Check",
+ desc:"Is there a major opposing signal?",
+ weight:5,
+ options:["Clean","Minor Conflict","Major Conflict"]
+}
+
+]
+
+};
+
+
+let direction="RISE";
+let answers={};
+
+
+function allConditions(){
+
+return [
+...data.structure,
+...data.liquidity,
+...data.entry
 ];
 
-const scoreEl=
-document.getElementById('score
+}
+
+
+function renderSection(section,id){
+
+const container=document.getElementById(id);
+
+container.innerHTML="";
+
+data[section].forEach(c=>{
+
+const box=document.createElement("div");
+
+box.className="condition";
+
+box.innerHTML=`
+
+<div class="condition-title">
+
+${c.title}
+
+<span class="weight">
+(${c.weight}%)
+</span>
+
+</div>
+
+<div class="desc">
+${c.desc}
+</div>
+
+<div class="options"></div>
+
+`;
+
+const options=box.querySelector(".options");
+
+c.options.forEach((option,index)=>{
+
+const btn=document.createElement("button");
+
+btn.textContent=option;
+
+btn.onclick=()=>{
+
+answers[c.id]=index;
+
+options.querySelectorAll("button")
+.forEach(b=>b.classList.remove("selected"));
+
+btn.classList.add("selected");
+
+calculate();
+
+};
+
+options.appendChild(btn);
+
+});
+
+container.appendChild(box);
+
+});
+
+}
+
+
+function isBullish(c,index){
+
+if(index===undefined)return false;
+
+if(c.id==="htf")return index===0;
+
+if(c.id==="bias")return index===0;
+
+if(c.id==="bos")return index===0;
+
+if(c.id==="pool")return index===0;
+
+if(c.id==="sweep")return index===0;
+
+if(c.id==="levels")return index===0;
+
+if(c.id==="zone")return index===0;
+
+if(c.id==="pd")return index===0;
+
+if(c.id==="candle")return index===0;
+
+if(c.id==="momentum")return index===0;
+
+return false;
+
+}
+
+
+function isBearish(c,index){
+
+if(index===undefined)return false;
+
+if(c.id==="htf")return index===1;
+
+if(c.id==="bias")return index===1;
+
+if(c.id==="bos")return index===1;
+
+if(c.id==="pool")return index===1;
+
+if(c.id==="sweep")return index===1;
+
+if(c.id==="levels")return false;
+
+if(c.id==="zone")return index===1;
+
+if(c.id==="pd")return index===1;
+
+if(c.id==="candle")return index===1;
+
+if(c.id==="momentum")return index===1;
+
+return false;
+
+}
+
+
+function calculate(){
+
+let score=0;
+
+let answered=0;
+
+let criticalFailure=false;
+
+let majorConflict=false;
+
+
+/*
+Critical confirmations.
+These cannot be bypassed simply by having
+many minor conditions ticked.
+*/
+
+const criticalIds=[
+"htf",
+"bias",
+"bos",
+"sweep"
+];
+
+
+allConditions().forEach(c=>{
+
+const index=answers[c.id];
+
+if(index!==undefined){
+
+answered++;
+
+let correct=false;
+
+if(direction==="RISE"){
+correct=isBullish(c,index);
+}else{
+correct=isBearish(c,index);
+}
+
+if(correct){
+
+score+=c.weight;
+
+}
+
+}
+
+});
+
+
+/* Critical checks */
+
+criticalIds.forEach(id=>{
+
+const c=allConditions().find(x=>x.id===id);
+
+const index=answers[id];
+
+if(index===undefined){
+
+criticalFailure=true;
+
+return;
+
+}
+
+let correct=
+direction==="RISE"
+?isBullish(c,index)
+:isBearish(c,index);
+
+if(!correct){
+
+criticalFailure=true;
+
+}
+
+});
+
+
+/* Major conflict */
+
+const conflictAnswer=answers.conflict;
+
+if(conflictAnswer===2){
+
+majorConflict=true;
+
+}
+
+
+/* Score */
+
+score=Math.round(score);
+
+document.getElementById("score").textContent=
+score+"%";
+
+document.getElementById("bar").style.width=
+score+"%";
+
+
+let verdict="NO TRADE";
+
+let explanation="";
+
+let warning="";
+
+
+if(majorConflict){
+
+verdict="NO TRADE";
+
+explanation=
+"Major conflicting signal detected. Do not force a RISE/FALL entry.";
+
+warning=
+"Conflict filter activated. Wait until the opposing signal is resolved.";
+
+}
+
+else if(criticalFailure){
+
+verdict="NO TRADE";
+
+explanation=
+"One or more critical confirmations are missing or disagree with the selected direction.";
+
+warning=
+"Required: HTF structure + bias + BOS/CHOCH + liquidity sweep must align.";
+
+}
+
+else if(score>=80){
+
+verdict=
+direction+" — A+ SETUP";
+
+explanation=
+"Strong directional alignment. Structure, liquidity and entry confirmation support the selected direction.";
+
+warning=
+"Still verify the live chart and expiry before entering.";
+
+}
+
+else if(score>=60){
+
+verdict=
+"WAIT — MORE CONFIRMATION";
+
+explanation=
+"The setup has some alignment but does not yet meet the A+ threshold.";
+
+warning=
+"Wait for stronger confirmation rather than forcing an entry.";
+
+}
+
+else{
+
+verdict="NO TRADE";
+
+explanation=
+"Insufficient confirmation for the selected direction.";
+
+warning=
+"Protect capital. No clear setup.";
+
+}
+
+
+document.getElementById("verdict").textContent=
+verdict;
+
+document.getElementById("explain").textContent=
+explanation;
+
+document.getElementById("warning").textContent=
+warning;
+
+}
+
+
+function setDirection(newDirection){
+
+direction=newDirection;
+
+document.getElementById("riseBtn")
+.classList.toggle("active",direction==="RISE");
+
+document.getElementById("fallBtn")
+.classList.toggle("active",direction==="FALL");
+
+document.getElementById("directionText").textContent=
+"Current direction: "+direction;
+
+calculate();
+
+}
+
+
+document.getElementById("riseBtn").onclick=()=>{
+setDirection("RISE");
+};
+
+
+document.getElementById("fallBtn").onclick=()=>{
+setDirection("FALL");
+};
+
+
+document.getElementById("reset").onclick=()=>{
+
+answers={};
+
+renderAll();
+
+};
+
+
+function renderAll(){
+
+renderSection("structure","structure");
+
+renderSection("liquidity","liquidity");
+
+renderSection("entry","entry");
+
+calculate();
+
+}
+
+
+renderAll();
+
+
+if("serviceWorker" in navigator){
+
+window.addEventListener("load",()=>{
+
+navigator.serviceWorker
+.register("./service-worker.js")
+.catch(()=>{});
+
+});
+
+}
+
+</script>
+
+</body>
+  </html>
