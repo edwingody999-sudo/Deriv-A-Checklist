@@ -3,144 +3,390 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
 <meta name="theme-color" content="#0b0e11">
 <meta name="description" content="Deriv A+ trading checklist for disciplined Rise/Fall decisions">
-<link rel="manifest" href="manifest.json">
+
+<link rel="manifest" href="./manifest.json">
+
 <title>Deriv A+ Checklist</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;background:#0b0e11;color:#f5f7fa;font-family:Arial,sans-serif}
-.app{max-width:620px;margin:auto;padding:14px}.header{text-align:center;padding:12px 0 16px}
-.header h1{margin:0;font-size:25px}.header p{margin:6px 0 0;color:#8b949e;font-size:13px}
-.card{background:#151a21;border:1px solid #252d36;border-radius:15px;padding:16px;margin-bottom:13px}
-h2{font-size:17px;margin:0 0 12px}.row{display:flex;gap:10px}.field{flex:1}
-label.title{display:block;color:#9da6b0;font-size:12px;margin-bottom:6px}
-select{width:100%;padding:12px;border-radius:9px;border:1px solid #303944;background:#0e1217;color:#fff}
-.tabs{display:flex;gap:9px;margin-bottom:14px}.tab{flex:1;padding:13px;border-radius:10px;border:1px solid #303944;background:#0e1217;color:#9da6b0;font-weight:700}
-.tab.active.rise{background:#063d22;color:#00e676;border-color:#00a85a}.tab.active.fall{background:#421414;color:#ff5c5c;border-color:#c83b3b}
-.check{display:flex;gap:10px;align-items:flex-start;padding:11px 0;border-bottom:1px solid #242b34;cursor:pointer}
-.check:last-child{border-bottom:0}.check input{width:19px;height:19px;margin-top:1px;accent-color:#00d26a}.check span{font-size:14px;line-height:1.35}
-.score{text-align:center;font-size:44px;font-weight:800}.sub{text-align:center;color:#8b949e;font-size:12px}
-.verdict{margin-top:13px;text-align:center;padding:14px;border-radius:11px;font-weight:800;font-size:17px}
-.no{background:#3b1010;color:#ff5c5c}.wait{background:#3b3005;color:#ffd740}.yes{background:#063d22;color:#00e676}
-button.reset{width:100%;padding:13px;border:0;border-radius:10px;background:#252d36;color:#fff;font-weight:700}
-.note{font-size:11px;color:#737d87;text-align:center;line-height:1.4;margin:12px 5px}
-.install{display:none;width:100%;padding:12px;margin-bottom:13px;border:1px solid #303944;border-radius:10px;background:#111820;color:#fff;font-weight:700}
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#0b0e11;
+  color:#f5f7fa;
+  font-family:Arial,sans-serif;
+}
+
+.app{
+  max-width:620px;
+  margin:auto;
+  padding:14px;
+}
+
+.header{
+  text-align:center;
+  padding:12px 0 16px;
+}
+
+.header h1{
+  margin:0;
+  font-size:25px;
+}
+
+.header p{
+  margin:6px 0 0;
+  color:#8b949e;
+  font-size:13px;
+}
+
+.card{
+  background:#151a21;
+  border:1px solid #252d36;
+  border-radius:15px;
+  padding:16px;
+  margin-bottom:13px;
+}
+
+h2{
+  font-size:17px;
+  margin:0 0 12px;
+}
+
+.row{
+  display:flex;
+  gap:10px;
+}
+
+.field{
+  flex:1;
+}
+
+label.title{
+  display:block;
+  color:#9da6b0;
+  font-size:12px;
+  margin-bottom:6px;
+}
+
+select{
+  width:100%;
+  padding:12px;
+  border-radius:9px;
+  border:1px solid #303944;
+  background:#0e1217;
+  color:#fff;
+}
+
+.tabs{
+  display:flex;
+  gap:9px;
+  margin-bottom:14px;
+}
+
+.tab{
+  flex:1;
+  padding:13px;
+  border-radius:10px;
+  border:1px solid #303944;
+  background:#0e1217;
+  color:#9da6b0;
+  font-weight:700;
+}
+
+.tab.active.rise{
+  background:#063d22;
+  color:#00e676;
+  border-color:#00a85a;
+}
+
+.tab.active.fall{
+  background:#421414;
+  color:#ff5c5c;
+  border-color:#c83b3b;
+}
+
+.check{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  padding:11px 0;
+  border-bottom:1px solid #242b34;
+  cursor:pointer;
+}
+
+.check:last-child{
+  border-bottom:0;
+}
+
+.check input{
+  width:19px;
+  height:19px;
+  margin-top:1px;
+  accent-color:#00d26a;
+}
+
+.check span{
+  font-size:14px;
+  line-height:1.35;
+}
+
+.score{
+  text-align:center;
+  font-size:44px;
+  font-weight:800;
+}
+
+.sub{
+  text-align:center;
+  color:#8b949e;
+  font-size:12px;
+}
+
+.verdict{
+  margin-top:13px;
+  text-align:center;
+  padding:14px;
+  border-radius:11px;
+  font-weight:800;
+  font-size:17px;
+}
+
+.no{
+  background:#3b1010;
+  color:#ff5c5c;
+}
+
+.wait{
+  background:#3b3005;
+  color:#ffd740;
+}
+
+.yes{
+  background:#063d22;
+  color:#00e676;
+}
+
+button.reset{
+  width:100%;
+  padding:13px;
+  border:0;
+  border-radius:10px;
+  background:#252d36;
+  color:#fff;
+  font-weight:700;
+}
+
+.note{
+  font-size:11px;
+  color:#737d87;
+  text-align:center;
+  line-height:1.4;
+  margin:12px 5px;
+}
+
+.install{
+  display:none;
+  width:100%;
+  padding:12px;
+  margin-bottom:13px;
+  border:1px solid #303944;
+  border-radius:10px;
+  background:#111820;
+  color:#fff;
+  font-weight:700;
+}
 </style>
 </head>
+
 <body>
+
 <div class="app">
-  <header class="header">
-    <h1>Deriv A+ Checklist</h1>
-    <p>Confirm the setup. Protect the account.</p>
-  </header>
 
-  <button id="installBtn" class="install">INSTALL APP</button>
+<header class="header">
+<h1>Deriv A+ Checklist</h1>
+<p>Confirm the setup. Protect the account.</p>
+</header>
 
-  <div class="card">
-    <div class="tabs">
-      <button class="tab active rise" data-direction="RISE">RISE</button>
-      <button class="tab fall" data-direction="FALL">FALL</button>
-    </div>
-    <div class="row">
-      <div class="field">
-        <label class="title">ASSET</label>
-        <select id="asset">
-          <option>Volatility 10 Index</option>
-          <option>Volatility 25 Index</option>
-          <option>Volatility 50 Index</option>
-          <option>Volatility 75 Index</option>
-          <option>Volatility 100 Index</option>
-          <option>Volatility 10 (1s) Index</option>
-          <option>Volatility 25 (1s) Index</option>
-          <option>Volatility 50 (1s) Index</option>
-          <option>Volatility 75 (1s) Index</option>
-          <option>Volatility 100 (1s) Index</option>
-        </select>
-      </div>
-      <div class="field">
-        <label class="title">TIMEFRAME</label>
-        <select id="timeframe">
-          <option>1 Minute</option>
-          <option selected>5 Minutes</option>
-          <option>15 Minutes</option>
-          <option>1 Hour</option>
-        </select>
-      </div>
-    </div>
-  </div>
+<button id="installBtn" class="install">
+INSTALL APP
+</button>
 
-  <div class="card">
-    <h2>1. Market Structure</h2>
-    <label class="check"><input type="checkbox" class="condition"><span>Higher-timeframe direction is clear</span></label>
-    <label class="check"><input type="checkbox" class="condition"><span>Current structure supports RISE/FALL direction</span></label>
-    <label class="check"><input type="checkbox" class="condition"><span>Recent BOS or CHOCH confirms the direction</span></label>
-  </div>
+<div class="card">
 
-  <div class="card">
-    <h2>2. Liquidity</h2>
-    <label class="check"><input type="checkbox" class="condition"><span>Important liquidity level is identified</span></label>
-    <label class="check"><input type="checkbox" class="condition"><span>Liquidity sweep/rejection has occurred</span></label>
-    <label class="check"><input type="checkbox" class="condition"><span>No obvious trap or conflicting liquidity signal</span></label>
-  </div>
+<div class="tabs">
 
-  <div class="card">
-    <h2>3. Entry Confirmation</h2>
-    <label class="check"><input type="checkbox" class="condition"><span>Valid support/resistance or reaction zone</span></label>
-    <label class="check"><input type="checkbox" class="condition"><span>Clear confirmation/rejection candle</span></label>
-    <label class="check"><input type="checkbox" class="condition"><span>Momentum agrees with the selected direction</span></label>
-    <label class="check"><input type="checkbox" class="condition"><span>No major conflicting signal</span></label>
-  </div>
+<button class="tab active rise" data-direction="RISE">
+RISE
+</button>
 
-  <div class="card">
-    <div id="score" class="score">0%</div>
-    <div class="sub">SETUP CONFIRMATION</div>
-    <div id="verdict" class="verdict no">NO TRADE</div>
-  </div>
+<button class="tab fall" data-direction="FALL">
+FALL
+</button>
 
-  <button id="reset" class="reset">RESET CHECKLIST</button>
-  <p class="note">A+ means the checklist conditions are satisfied; it does not guarantee a winning trade. Use disciplined stake/risk management.</p>
 </div>
 
-<script>
-const checks=[...document.querySelectorAll('.condition')];
-const scoreEl=document.getElementById('score');
-const verdictEl=document.getElementById('verdict');
-const tabs=[...document.querySelectorAll('.tab')];
-let direction='RISE';
+<div class="row">
 
-function calculate(){
-  const done=checks.filter(c=>c.checked).length;
-  const pct=Math.round(done/checks.length*100);
-  scoreEl.textContent=pct+'%';
-  verdictEl.className='verdict';
-  if(pct===100){verdictEl.textContent=direction+' — A+ SETUP';verdictEl.classList.add('yes')}
-  else if(pct>=70){verdictEl.textContent='WAIT — MORE CONFIRMATION';verdictEl.classList.add('wait')}
-  else{verdictEl.textContent='NO TRADE';verdictEl.classList.add('no')}
-}
-checks.forEach(c=>c.addEventListener('change',calculate));
-tabs.forEach(t=>t.addEventListener('click',()=>{
-  tabs.forEach(x=>x.classList.remove('active'));
-  t.classList.add('active'); direction=t.dataset.direction; calculate();
-}));
-document.getElementById('reset').addEventListener('click',()=>{
-  checks.forEach(c=>c.checked=false);
-  direction='RISE';
-  tabs.forEach(x=>x.classList.remove('active'));
-  tabs[0].classList.add('active');
-  calculate();
-});
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt',e=>{
-  e.preventDefault(); deferredPrompt=e;
-  document.getElementById('installBtn').style.display='block';
-});
-document.getElementById('installBtn').addEventListener('click',async()=>{
-  if(!deferredPrompt)return;
-  deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt=null;
-  document.getElementById('installBtn').style.display='none';
-});
-if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js'));
-calculate();
-</script>
-</body>
-</html>
+<div class="field">
+
+<label class="title">
+ASSET
+</label>
+
+<select id="asset">
+
+<option>Volatility 10 Index</option>
+<option>Volatility 25 Index</option>
+<option>Volatility 50 Index</option>
+<option>Volatility 75 Index</option>
+<option>Volatility 100 Index</option>
+
+<option>Volatility 10 (1s) Index</option>
+<option>Volatility 25 (1s) Index</option>
+<option>Volatility 50 (1s) Index</option>
+<option>Volatility 75 (1s) Index</option>
+<option>Volatility 100 (1s) Index</option>
+
+</select>
+
+</div>
+
+<div class="field">
+
+<label class="title">
+TIMEFRAME
+</label>
+
+<select id="timeframe">
+
+<option>1 Minute</option>
+<option selected>5 Minutes</option>
+<option>15 Minutes</option>
+<option>1 Hour</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+1. Market Structure
+</h2>
+
+<label class="check">
+<input type="checkbox" class="condition">
+<span>Higher-timeframe direction is clear</span>
+</label>
+
+<label class="check">
+<input type="checkbox" class="condition">
+<span>Current structure supports RISE/FALL direction</span>
+</label>
+
+<label class="check">
+<input type="checkbox" class="condition">
+<span>Recent BOS or CHOCH confirms the direction</span>
+</label>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+2. Liquidity
+</h2>
+
+<label class="check">
+<input type="checkbox" class="condition">
+<span>Important liquidity level is identified</span>
+</label>
+
+<label class="check">
+<input type="checkbox" class="condition">
+<span>Liquidity sweep/rejection has occurred</span>
+</label>
+
+<label class="check">
+<input type="checkbox" class="condition">
+<span>No obvious trap or conflicting liquidity signal</span>
+</label>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+3. Entry Confirmation
+</h2>
+
+<label class="check">
+<input type="checkbox" class="condition">
+<span>Valid support/resistance or reaction zone</span>
+</label>
+
+<label class="check">
+<input type="checkbox" class="condition">
+<span>Clear confirmation/rejection candle</span>
+</label>
+
+<label class="check">
+<input type="checkbox" class="condition">
+<span>Momentum agrees with the selected direction</span>
+</label>
+
+<label class="check">
+<input type="checkbox" class="condition">
+<span>No major conflicting signal</span>
+</label>
+
+</div>
+
+
+<div class="card">
+
+<div id="score" class="score">
+0%
+</div>
+
+<div class="sub">
+SETUP CONFIRMATION
+</div>
+
+<div id="verdict" class="verdict no">
+NO TRADE
+</div>
+
+</div>
+
+
+<button id="reset" class="reset">
+RESET CHECKLIST
+</button>
+
+<p class="note">
+A+ means the checklist conditions are satisfied; it does not guarantee a winning trade. Use disciplined stake/risk management.
+</p>
+
+</div>
+
+
+<script>
+
+const checks=[
+  ...document.querySelectorAll('.condition')
+];
+
+const scoreEl=
+document.getElementById('score
