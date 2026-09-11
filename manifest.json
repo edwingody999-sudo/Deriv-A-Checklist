@@ -1,0 +1,10 @@
+{
+  "name": "Deriv A+ Checklist",
+  "short_name": "Deriv A+",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0b0e11",
+  "theme_color": "#0b0e11",
+  "description": "Deriv A+ trading checklist for disciplined Rise/Fall decisions",
+  "orientation": "portrait"
+}
